@@ -120,7 +120,7 @@ Shows what would happen if the command were executed.
 		    if ($configs.length -gt 0 -and $configs -notcontains $lookup.ShortName) { continue }
 			
 		    $destprop = $destprops | Where-Object{ $_.Displayname -eq $displayname }
-		    if ($destprop -eq $null)
+		    if ($null -eq $destprop)
 		    {
 			    Write-Warning "Configuration option '$displayname' does not exists on the destination instance."
 			    continue
