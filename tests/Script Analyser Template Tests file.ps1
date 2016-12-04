@@ -6,6 +6,8 @@
 ## and then code to fix the tests
 ## or if you pass all the other tests and just want to work with this Tests file then you can use
 ## Invoke-Pester .\Tests\COMMANDNAMe.Tests.ps1
+## If you want to understand what the failed Script Analyser test means
+## Run Invoke-ScriptAnalyser .\functions\COMMANDNAME.ps1
 
 #Thank you Warren http://ramblingcookiemonster.github.io/Testing-DSC-with-Pester-and-AppVeyor/
 
