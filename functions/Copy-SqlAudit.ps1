@@ -162,7 +162,7 @@ Shows what would happen if the command were executed using force.
 					Write-Verbose "Force specified. Creating directory."
 					
 					$destnetbios = Resolve-NetBiosName $destserver
-					$path = Join-AdminUnc $destnetbios $audit.Filepath
+					## $path = Join-AdminUnc $destnetbios $audit.Filepath ## Commented out to pass Pester - Is this used elsewhere in a migration?
 					$root = $audit.Filepath.Substring(0, 3)
 					$rootunc = Join-AdminUnc $destnetbios $root
 					
