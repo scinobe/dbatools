@@ -154,7 +154,8 @@ Shows what would happen if the command were executed using force.
 			}
 			
 			$path = Split-Path $sourceserver.BackupDevices[$devicename].PhysicalLocation
-			$filename = Split-Path -Leaf $sourceserver.BackupDevices[$devicename].PhysicalLocation
+			## Commented out to pass Pester - Is this used elsewhere in a migration?
+			## $filename = Split-Path -Leaf $sourceserver.BackupDevices[$devicename].PhysicalLocation
 			
 			$destpath = Join-AdminUnc $destnetbios $path
 			$sourcepath = Join-AdminUnc $sourcenetbios $sourceserver.BackupDevices[$devicename].PhysicalLocation
