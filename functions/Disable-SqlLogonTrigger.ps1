@@ -76,9 +76,12 @@ Disables all user logon triggers, Microsoft shipped triggers are untouched.
 		Write-Output "Attempting to connect to SQL Server.."
 		
 		$sourceserver = Connect-SqlServer -SqlServer $sqlserver -SqlCredential $SqlCredential
-		$source = $sourceserver.DomainInstanceName
 		
-        $dacenabled = $server.Configuration.RemoteDacConnectionsEnabled.ConfigValue
+		## Commented out to pass Pester - Is this used elsewhere in a migration? 
+		## $source = $sourceserver.DomainInstanceName
+		
+		## Commented out to pass Pester - Is this used elsewhere in a migration? 
+        ## $dacenabled = $server.Configuration.RemoteDacConnectionsEnabled.ConfigValue
 
         # Does your script use something only supported in specific versions? Do a check.
         # da: SQL Logon triggers might only be supported in 2005 SP2 and above. Worth a check?
