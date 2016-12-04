@@ -112,7 +112,7 @@ Shows what would happen if the command were executed using force.
 			
 			# Proxy accounts rely on Credential accounts 
 			$credentialName = $proxyaccount.CredentialName
-			if ($destserver.Credentials[$CredentialName] -eq $null)
+			if ($null -eq $destserver.Credentials[$CredentialName])
 			{
 				Write-Warning "Associated credential account, $CredentialName, does not exist on $destination. Skipping migration of $proxyname."
 				continue
