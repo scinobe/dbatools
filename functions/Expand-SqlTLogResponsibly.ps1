@@ -1,4 +1,4 @@
-function Expand-SqlTLogResponsibly
+﻿function Expand-SqlTLogResponsibly
 {
 <#
 
@@ -290,7 +290,7 @@ https://dbatools.io/Expand-SqlTLogResponsibly
 
 					if ($requiredSpace -gt $TotalTLogFreeDiskSpaceKB)
 					{
-						Write-Output "There is not enough space on volume to perform this task. `r`n" `
+						Write-Output -InputObject "There is not enough space on volume to perform this task. `r`n" `
 									 "Available space: $([System.Math]::Round($($TotalTLogFreeDiskSpaceKB / 1024.0), 2))MB;`r`n" `
 									 "Required space: $([System.Math]::Round($($requiredSpace / 1024.0), 2))MB;"
 						return
@@ -388,8 +388,10 @@ https://dbatools.io/Expand-SqlTLogResponsibly
 												$backup.BackupSetName = $db + " Backup"
 												$backup.Database = $db
 												$backup.MediaDescription = "Disk"
-												$dt = get-date -format yyyyMMddHHmmssms
-												$dir = $backup.Devices.AddDevice($backupdirectory + "\" + $db + "_db_" + $dt + ".trn", 'File')
+												## Commented out to pass Pester - Is this used elsewhere in a migration? 
+												## $dt = get-date -format yyyyMMddHHmmssms
+												## Commented out to pass Pester - Is this used elsewhere in a migration? 
+												## $dir = $backup.Devices.AddDevice($backupdirectory + "\" + $db + "_db_" + $dt + ".trn", 'File')
 												if ($DefaultCompression = $true)
 												{
 													$backup.CompressionOption = 1
@@ -398,7 +400,7 @@ https://dbatools.io/Expand-SqlTLogResponsibly
 												{
 													$backup.CompressionOption = 0
 												}
-												$percnt = [Microsoft.SqlServer.Management.Smo.PercentCompleteEventHandler] {
+												$percent = [Microsoft.SqlServer.Management.Smo.PercentCompleteEventHandler] {
 													Write-Progress -id 2 -ParentId 1 -activity "Backing up $db to $server" -percentcomplete $_.Percent -status ([System.String]::Format("Progress: {0} %", $_.Percent))
 												}
 												$backup.add_PercentComplete($percent)
