@@ -121,6 +121,7 @@ https://dbatools.io/Get-DetachedDbInfo
 					catch
 					{
 						# This usually occurs if there are existing objects in destination
+						Write-Warning -Message "There was a problem. Probably existing objects in the destination"
 					}
 				}
 			}
