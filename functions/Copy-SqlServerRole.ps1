@@ -147,7 +147,7 @@ BEGIN {
 					
 					foreach ($rolename in $rolemembers)
 					{
-						if ($destserver.logins[$rolename] -ne $null)
+						if ($null -ne $destserver.logins[$rolename])
 						{
 							$newrole.AddMember($rolename)
 						}
@@ -230,7 +230,7 @@ BEGIN {
 							{
 								$permstate = $perm.permissionstate
 								$sourceperm = $perms | Where-Object { $_.PermissionType -eq $perm.Permissiontype -and $_.PermissionState -eq $permstate }
-								if ($sourceperm -eq $null)
+								if ($null -eq $sourceperm )
 								{
 									If ($Pscmdlet.ShouldProcess($destination, "Performing Revoke on $($perm.permissiontype) for $rolename"))
 									{
