@@ -202,8 +202,8 @@ Shows what would happen if the command were executed using force.
 			
 			$newalert = $destserver.JobServer.Alerts[$alertname]
 			$notifications = $alert.EnumNotifications()
-			$newnotifications = $newalert.EnumNotifications()
-			$job = $alert.JobId
+			## $newnotifications = $newalert.EnumNotifications() ## Commented out to pass Pester - Is this used elsewhere in a migration?
+			## $job = $alert.JobId ## Commented out to pass Pester - Is this used elsewhere in a migration?
 			$jobname = $alert.JobName
 			
 			If ($Pscmdlet.ShouldProcess($destination, "Moving Notifications $alertname"))
