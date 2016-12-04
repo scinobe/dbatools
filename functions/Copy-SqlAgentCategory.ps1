@@ -120,6 +120,7 @@ Shows what would happen if the command were executed using force.
 
 			If the associated credential for the category does not exist on the destination, it will be skipped. If the job category already exists on the destination, it will be skipped unless -Force is used.  
 			#>
+			[CmdletBinding(SupportsShouldProcess = $true)]
 			param (
 				[string[]]$JobCategories
 			)
