@@ -111,6 +111,8 @@ Shows what would happen if the command were executed.
 		
 		Function Copy-SqlDatabaseMailConfig
 		{
+			[CmdletBinding(SupportsShouldProcess = $true)]
+			param()
 			Write-Output "Migrating mail server configuration values"
 			if ($Pscmdlet.ShouldProcess($destination, "Migrating all mail server configuration values"))
 			{
@@ -131,6 +133,8 @@ Shows what would happen if the command were executed.
 		
 		Function Copy-SqlDatabaseAccount
 		{
+			[CmdletBinding(SupportsShouldProcess = $true)]
+			param()
 			$sourceaccounts = $sourceserver.Mail.Accounts
 			$destaccounts = $destserver.Mail.Accounts
 			
@@ -187,7 +191,9 @@ Shows what would happen if the command were executed.
 		
 		Function Copy-SqlDatabaseMailProfile
 		{
-			
+			[CmdletBinding(SupportsShouldProcess = $true)]
+			param()
+
 			$sourceprofiles = $sourceserver.Mail.Profiles
 			$destprofiles = $destserver.Mail.Profiles
 			
@@ -244,6 +250,8 @@ Shows what would happen if the command were executed.
 		
 		Function Copy-SqlDatabaseMailServer
 		{
+			[CmdletBinding(SupportsShouldProcess = $true)]
+			param()
 			$sourcemailservers = $sourceserver.Mail.Accounts.MailServers
 			$destmailservers = $destserver.Mail.Accounts.MailServers
 			
