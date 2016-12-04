@@ -26,7 +26,10 @@ if($env:APPVEYOR_REPO_BRANCH -and $env:APPVEYOR_REPO_BRANCH -notlike "master")
 $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace('.Tests.', '.')
 Import-Module $PSScriptRoot\..\functions\$sut -Force
 Import-Module PSScriptAnalyzer
-## Added PSAvoidUsingPlainTextForPassword as credential is an object and therefore fails. We can ignore any rules here under special circumstances agreed by admins :-)
+## Added PSAvoidUsingPlainTextForPassword as credential is an object and therefore fails. 
+## We can ignore any rules here under special circumstances agreed by admins :-)
+## We expect some context using comments about the reason for ignoring a rule
+
 $Rules = (Get-ScriptAnalyzerRule).Where{$_.RuleName -notin ('PSAvoidUsingPlainTextForPassword') }
 $Name = $sut.Split('.')[0]
 
