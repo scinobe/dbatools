@@ -119,7 +119,10 @@ Shows what would happen if the command were executed using force.
 					$sourceassemblies += $assembly
 				}
 			}
-			catch { }
+			catch 
+			{
+				Write-Output "There was an error getting an assembly"
+			}
 		}
 		
 		$destassemblies = @()
@@ -134,7 +137,10 @@ Shows what would happen if the command were executed using force.
 					$destassemblies += $assembly
 				}
 			}
-			catch { }
+			catch 
+			{
+				Write-Output "There was an error getting an assembly"
+			}
 		}
 		
 		foreach ($assembly in $sourceassemblies)
@@ -143,7 +149,7 @@ Shows what would happen if the command were executed using force.
 			$dbname = $assembly.Parent.Name
 			$destdb = $destserver.Databases[$dbname]
 			
-			if ($destdb -eq $null) { Write-Warning "Destination database $dbname does not exist. Skipping $assemblyname.";  continue }
+			if ($null -eq $destdb ) { Write-Warning "Destination database $dbname does not exist. Skipping $assemblyname.";  continue }
 			if ($assemblies.length -gt 0 -and $assemblies -notcontains "$dbname.$assemblyname") { continue }
 			
 			if ($assembly.AssemblySecurityLevel -eq "External" -and $destdb.Trustworthy -eq $false)
