@@ -4,6 +4,8 @@
 ## Add you own functional tests to the end of this file
 ## When you are coding up your storm you can run all the tests using Invoke-Pester .\Tests from the root of the repo 
 ## and then code to fix the tests
+## or if you pass all the other tests and just want to work with this Tests file then you can use
+## Invoke-Pester .\Tests\COMMANDNAMe.Tests.ps1
 
 #Thank you Warren http://ramblingcookiemonster.github.io/Testing-DSC-with-Pester-and-AppVeyor/
 
