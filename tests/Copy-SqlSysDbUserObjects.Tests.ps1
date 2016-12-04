@@ -30,7 +30,9 @@ Import-Module PSScriptAnalyzer
 ## We can ignore any rules here under special circumstances agreed by admins :-)
 ## We expect some context using comments about the reason for ignoring a rule
 
-$Rules = (Get-ScriptAnalyzerRule).Where{$_.RuleName -notin ('PSAvoidUsingPlainTextForPassword') }
+## Added PSUseSingularNouns to the ignore list for this command as a plural name makes sense as it is for objectS !!
+
+$Rules = (Get-ScriptAnalyzerRule).Where{$_.RuleName -notin ('PSAvoidUsingPlainTextForPassword','PSUseSingularNouns') }
 $Name = $sut.Split('.')[0]
 
     Describe 'Script Analyzer Tests' {
