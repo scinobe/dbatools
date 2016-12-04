@@ -36,6 +36,7 @@ File to disk, and string path.
 
 #>
 	[CmdletBinding(DefaultParameterSetName = "Default", SupportsShouldProcess = $true)]
+	[OutputType([String])]
 	param (
 		[Parameter(Mandatory = $true)]
 		[ValidateNotNullOrEmpty()]
@@ -218,7 +219,7 @@ using the SQL credential stored in the variables
 					$displayname = $sourceprop.DisplayName
 					
 					$destprop = $destprops | where-object{ $_.Displayname -eq $displayname }
-					if ($destprop -ne $null)
+					if ($null -ne $destprop)
 					{
 						try
 						{
