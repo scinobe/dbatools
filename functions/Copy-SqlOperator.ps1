@@ -94,7 +94,7 @@ Shows what would happen if the command were executed using force.
 		$serveroperators = $sourceserver.JobServer.Operators
 		$destoperators = $destserver.JobServer.Operators
 		
-		$failsafe = $server.JobServer.AlertSystem | Select FailSafeOperator
+		$failsafe = $server.JobServer.AlertSystem | Select-Object FailSafeOperator
 
     }
 
