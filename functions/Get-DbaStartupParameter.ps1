@@ -47,7 +47,9 @@ Logs in to WMI using the ad\sqladmin credential and gathers simplified informati
 		[Alias("ServerInstance", "SqlInstance")]
 		[object[]]$SqlServer,
 		[Alias("SqlCredential")]
-		[PSCredential]$Credential,
+		[PsCredential]
+		[System.Management.Automation.Credential()]
+		$Credential,
 		[switch]$Simple
 	)
 	
@@ -116,13 +118,13 @@ Logs in to WMI using the ad\sqladmin credential and gathers simplified informati
 						$minimalstart = $noeventlogs = $instancestart = $disablemonitoring = $false
 						$increasedextents = $commandprompt = $singleuser = $false
 						
-						if ($commandpromptparm -ne $null) { $commandprompt = $true }
-						if ($minimalstartparm -ne $null) { $minimalstart = $true }
-						if ($memorytoreserve -eq $null) { $memorytoreserve = 0 }
-						if ($noeventlogsparm -ne $null) { $noeventlogs = $true }
-						if ($instancestartparm -ne $null) { $instancestart = $true }
-						if ($disablemonitoringparm -ne $null) { $disablemonitoring = $true }
-						if ($increasedextentsparm -ne $null) { $increasedextents = $true }
+						if ($null -ne $commandpromptparm ) { $commandprompt = $true }
+						if ($null -ne $minimalstartparm ) { $minimalstart = $true }
+						if ($null -eq $memorytoreserve ) { $memorytoreserve = 0 }
+						if ($null -ne $noeventlogsparm ) { $noeventlogs = $true }
+						if ($null -ne $instancestartparm ) { $instancestart = $true }
+						if ($null -ne $disablemonitoringparm ) { $disablemonitoring = $true }
+						if ($null -ne $increasedextentsparm ) { $increasedextents = $true }
 						
 						$singleuserparm = $params | Where-Object { $_.StartsWith('-m') }
 						
