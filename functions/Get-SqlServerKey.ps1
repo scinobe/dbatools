@@ -117,7 +117,7 @@ Gets SQL Server versions, editions and product keys for all instances listed wit
 		
 		if ($SqlCms)
 		{
-			if ([Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.Management.RegisteredServers") -eq $null)
+			if ($Null -eq [Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.Management.RegisteredServers"))
 			{ throw "Can't load CMS assemblies. You must have SQL Server Management Studio installed to use the -SqlCms switch." }
 			
 			Write-Output "Gathering SQL Servers names from Central Management Server"
@@ -170,7 +170,7 @@ Gets SQL Server versions, editions and product keys for all instances listed wit
 			}
 			
 			$instances = $reg.OpenSubKey("$basepath\Instance Names\SQL", $false)
-			if ($instances -eq $null) { Write-Warning "No instances found on $servername. Skipping."; continue }
+			if ($null -eq $instances) { Write-Warning "No instances found on $servername. Skipping."; continue }
 			# Get Product Keys for all instances on the server.
 			foreach ($instance in $instances.GetValueNames())
 			{
@@ -179,11 +179,11 @@ Gets SQL Server versions, editions and product keys for all instances listed wit
 				
 				$subkeys = $reg.OpenSubKey("$basepath", $false)
 				$instancekey = $subkeys.GetSubKeynames() | Where-Object { $_ -like "*.$instance" }
-				if ($instancekey -eq $null) { $instancekey = $instance } # SQL 2k5
+				if ($null -eq $instancekey) { $instancekey = $instance } # SQL 2k5
 				
 				# Cluster instance hostnames are required for SMO connection
 				$cluster = $reg.OpenSubKey("$basepath\$instancekey\Cluster", $false)
-				if ($cluster -ne $null)
+				if ($null -ne $cluster)
 				{
 					$clustername = $cluster.GetValue("ClusterName")
 					if ($instance -eq "MSSQLSERVER") { $sqlserver = $clustername }
@@ -225,7 +225,10 @@ Gets SQL Server versions, editions and product keys for all instances listed wit
 					}
 					catch { $sqlkey = "Could not connect." }
 					try { $sqlkey = Unlock-SqlServerKey $binarykey $server.VersionMajor }
-					catch { }
+					catch 
+					{ 
+						Write-Warning -Message "Failed to Unlock-SqlServerKey"
+					}
 				}
 				else { $sqlkey = "SQL Server Express Edition" }
 				$server.ConnectionContext.Disconnect()
@@ -240,7 +243,7 @@ Gets SQL Server versions, editions and product keys for all instances listed wit
 			}
 			$reg.Close()
 		}
-		$objectCollection | Select "SQL Instance", "SQL Version", "SQL Edition", "Product Key"
+		$objectCollection | Select-Object  "SQL Instance", "SQL Version", "SQL Edition", "Product Key"
 	}
 	
 	END
