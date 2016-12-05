@@ -175,18 +175,18 @@ All user databases contained within \\fileserver\share\sqlbackups\SQLSERVERA wil
 		
 		foreach ($db in $dblist)
 		{
-			$full = Get-ChildItem "$db\FULL\*.bak" | sort LastWriteTime | select -last 1
+			$full = Get-ChildItem "$db\FULL\*.bak" | Sort-Object LastWriteTime | Select-Object -last 1
 			$since = $full.LastWriteTime; $full = $full.FullName
 			
 			$diff = $null; $logs = $null
 			if (Test-Path  "$db\DIFF")
 			{
-				$diff = Get-ChildItem "$db\DIFF\*.bak" | Where { $_.LastWriteTime -gt $since } | sort LastWriteTime | select -last 1
+				$diff = Get-ChildItem "$db\DIFF\*.bak" | Where-Object { $_.LastWriteTime -gt $since } | Sort-Object LastWriteTime | Select-Object -last 1
 				$since = $diff.LastWriteTime; $diff = $diff.fullname
 			}
 			if (Test-Path  "$db\LOG")
 			{
-				$logs = (Get-ChildItem "$db\LOG\*.trn" | Where { $_.LastWriteTime -gt $since })
+				$logs = (Get-ChildItem "$db\LOG\*.trn" | Where-Object { $_.LastWriteTime -gt $since })
 				$logs = ($logs | Sort-Object LastWriteTime).Fullname
 			}
 			
@@ -208,14 +208,14 @@ All user databases contained within \\fileserver\share\sqlbackups\SQLSERVERA wil
 			}
 			if ($systemdbs -contains $dbname) { continue }
 			
-			if ($server.databases[$dbname] -ne $null -and !$force -and $systemdbs -notcontains $dbname)
+			if ($null -ne $server.databases[$dbname] -and !$force -and $systemdbs -notcontains $dbname)
 			{
 				Write-Warning "$dbname exists at $SqlServer. Use -Force to drop and migrate."
 				$skippedb[$dbname] = "Database exists at $SqlServer. Use -Force to drop and migrate."
 				continue
 			}
 			
-			if ($server.databases[$dbname] -ne $null -and $force -and $systemdbs -notcontains $dbname)
+			if ($null -ne $server.databases[$dbname] -and $force -and $systemdbs -notcontains $dbname)
 			{
 				If ($Pscmdlet.ShouldProcess($SqlServer, "DROP DATABASE $dbname"))
 				{
@@ -234,7 +234,8 @@ All user databases contained within \\fileserver\share\sqlbackups\SQLSERVERA wil
 				continue
 			}
 			$backupinfo = $restore.ReadBackupHeader($server)
-			$backupversion = [version]("$($backupinfo.SoftwareVersionMajor).$($backupinfo.SoftwareVersionMinor).$($backupinfo.SoftwareVersionBuild)")
+			## Commented out to pass Pester - Is this used elsewhere in a migration?
+			## $backupversion = [version]("$($backupinfo.SoftwareVersionMajor).$($backupinfo.SoftwareVersionMinor).$($backupinfo.SoftwareVersionBuild)")
 			
 			Write-Output "Restoring FULL backup to $dbname to $SqlServer"
 			$result = Restore-Database $server $dbname $full "Database" $filestructure
@@ -245,7 +246,7 @@ All user databases contained within \\fileserver\share\sqlbackups\SQLSERVERA wil
 				{
 					Write-Output "Restoring DIFFERENTIAL backup"
 					$result = Restore-Database $server $dbname $diff "Database" $filestructure
-					if ($result -ne $true) { $result | fl -force; return }
+					if ($result -ne $true) { $result | Format-List -force; return }
 				}
 				if ($logs)
 				{
