@@ -60,12 +60,15 @@ Returns an object with server name, IPAddress (just ipv4), port and static ($tru
 	
 #>
 	[CmdletBinding()]
+	[OutputType([System.Collections.ArrayList])] 
 	Param (
 		[parameter(Mandatory = $true, ValueFromPipeline = $true)]
 		[Alias("ServerInstance", "SqlInstance")]
 		[string[]]$SqlServer,
 		[Alias("SqlCredential")]
-		[PsCredential]$Credential,
+		[PsCredential]
+		[System.Management.Automation.Credential()]
+		$Credential,
 		[switch]$Detailed,
 		[Alias("Ipv4")]
 		[switch]$NoIpv6
@@ -188,7 +191,7 @@ Returns an object with server name, IPAddress (just ipv4), port and static ($tru
 				}
 			}
 			
-			if ($Detailed -eq $false -or ($Detailed -eq $true -and $allips -eq $null))
+			if ($Detailed -eq $false -or ($Detailed -eq $true -and $null -eq $allips ))
 			{
 				# WmiComputer can be unreliable :( Use T-SQL
 				$sql = "SELECT local_tcp_port FROM sys.dm_exec_connections WHERE session_id = @@SPID"
