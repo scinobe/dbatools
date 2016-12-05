@@ -51,7 +51,7 @@ Get-DbaClusterActiveNode -SqlServer sqlcluster -Detailed
 Returns a datatable with details
 	
 #>
-	[CmdletBinding(SupportsShouldProcess = $true)]
+	 [OutputType([string])] 
 	Param (
 		[parameter(Mandatory = $true, ValueFromPipeline = $true)]
 		[Alias("ServerInstance", "SqlInstance")]
