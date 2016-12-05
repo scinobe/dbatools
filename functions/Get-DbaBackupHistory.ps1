@@ -99,7 +99,9 @@ Lots of detailed information for all databases on sqlserver2014a and sql2016.
 		[Alias("ServerInstance", "SqlInstance")]
 		[object[]]$SqlServer,
 		[Alias("SqlCredential")]
-		[PsCredential]$Credential,
+		[PsCredential]
+		[System.Management.Automation.Credential()]
+		$Credential,
 		[Parameter(ParameterSetName = "NoLast")]
 		[switch]$Force,
 		[Parameter(ParameterSetName = "NoLast")]
@@ -144,7 +146,7 @@ Lots of detailed information for all databases on sqlserver2014a and sql2016.
 				
 				if ($last)
 				{
-					if ($databases -eq $null) { $databases = $sourceserver.databases.name }
+					if ($null -eq $databases) { $databases = $sourceserver.databases.name }
 					Get-DbaBackupHistory -SqlServer $sourceserver -LastFull -Databases $databases
 					Get-DbaBackupHistory -SqlServer $sourceserver -LastDiff -Databases $databases
 					Get-DbaBackupHistory -SqlServer $sourceserver -LastLog -Databases $databases
@@ -153,7 +155,7 @@ Lots of detailed information for all databases on sqlserver2014a and sql2016.
 				{
 					$sql = @()
 					
-					if ($databases -eq $null) { $databases = $sourceserver.databases.name }
+					if ($null -eq $databases) { $databases = $sourceserver.databases.name }
 					
 					if ($LastFull) { $first = 'D'; $second = 'P' }
 					if ($LastDiff) { $first = 'I'; $second = 'Q' }
@@ -282,7 +284,7 @@ Lots of detailed information for all databases on sqlserver2014a and sql2016.
 						$wherearray += "type = 'Full' and mediaset.Media_Set_ID = (select top 1 mediaset.Media_Set_ID $from $tempwhere order by backupset.Backup_Finish_Date DESC)"
 					}
 					
-					if ($Since -ne $null)
+					if ($null -ne $Since)
 					{
 						$wherearray += "backupset.Backup_Finish_Date >= '$since'"
 					}
