@@ -64,11 +64,14 @@ Returns a formatted table displaying Server, Database, DatabaseCreated, LastGood
 
 #>
 	[CmdletBinding()]
+	[OutputType([System.Collections.ArrayList])] 
 	Param (
 		[parameter(Mandatory = $true, ValueFromPipeline = $true)]
 		[Alias("ServerInstance", "SqlInstance")]
 		[string[]]$SqlServer,
-		[PsCredential]$Credential,
+		[PsCredential]
+		[System.Management.Automation.Credential()]
+		$Credential,
 		[switch]$Detailed
 	)
 
