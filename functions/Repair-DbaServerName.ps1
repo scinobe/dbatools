@@ -64,11 +64,14 @@ Skips some prompts/confirms but not all of them.
 	
 #>
 	[CmdletBinding(SupportsShouldProcess = $true, ConfirmImpact = "High")]
+	[OutputType([string])] 
 	Param (
 		[parameter(Mandatory = $true, ValueFromPipeline = $true)]
 		[Alias("ServerInstance", "SqlInstance")]
 		[string[]]$SqlServer,
-		[PsCredential]$Credential,
+		[PsCredential]
+		[System.Management.Automation.Credential()]
+		$Credential,
 		[switch]$AutoFix,
 		[switch]$Force
 	)
@@ -76,7 +79,8 @@ Skips some prompts/confirms but not all of them.
 	BEGIN
 	{
 		if ($Force -eq $true) { $ConfirmPreference = "None" }
-		$collection = New-Object System.Collections.ArrayList
+		## Commented out to pass Pester - Is this used elsewhere in a migration?
+		## $collection = New-Object System.Collections.ArrayList
 	}
 	
 	PROCESS
@@ -152,7 +156,8 @@ Skips some prompts/confirms but not all of them.
 				{
 					if ($nametesterror -like '*replication*')
 					{
-						$replication = $true
+						## Commented out to pass Pester - Is this used elsewhere in a migration?
+						## $replication = $true
 						
 						if ($AutoFix -eq $false)
 						{
@@ -306,7 +311,7 @@ Skips some prompts/confirms but not all of them.
 				$renamed = $true
 			}
 			
-			if ($allsqlservices -eq $null)
+			if ($null -eq $allsqlservices)
 			{
 				Write-Warning "Could not contact $($server.ComputerNamePhysicalNetBIOS) using Get-Service. You must manually restart the SQL Server instance."
 				$needsrestart = $true
