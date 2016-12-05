@@ -66,7 +66,7 @@ Find all servers in SQL Server Central Management server that have Max SQL memor
 of the server (think 2147483647), then pipe those to Set-DbaMaxMemory and use the default recommendation.
 
 #>
-	[CmdletBinding()]
+	[CmdletBinding(SupportsShouldProcess = $true)]
 	Param (
 		[parameter(Position = 0)]
 		[Alias("ServerInstance", "SqlInstance", "SqlServers")]
@@ -79,7 +79,7 @@ of the server (think 2147483647), then pipe those to Set-DbaMaxMemory and use th
 	)
 	PROCESS
 	{
-		if ($SqlServer.length -eq 0 -and $collection -eq $null)
+		if ($SqlServer.length -eq 0 -and $null -eq $collection)
 		{
 			throw "You must specify a server list source using -SqlServer or you can pipe results from Test-DbaMaxMemory"
 		}
@@ -89,7 +89,7 @@ of the server (think 2147483647), then pipe those to Set-DbaMaxMemory and use th
 			$UseRecommended = $true
 		}
 		
-		if ($Collection -eq $null)
+		if ($null -eq $Collection)
 		{
 			$Collection = Test-DbaMaxMemory -SqlServer $SqlServer
 		}
@@ -98,7 +98,7 @@ of the server (think 2147483647), then pipe those to Set-DbaMaxMemory and use th
 		
 		foreach ($row in $Collection)
 		{
-			if ($row.server -eq $null)
+			if ($null -eq $row.server)
 			{
 				$row = Test-DbaMaxMemory -sqlserver $row
 				$row | Add-Member -NotePropertyName OldMaxValue -NotePropertyValue 0
@@ -130,7 +130,7 @@ of the server (think 2147483647), then pipe those to Set-DbaMaxMemory and use th
 				{
 					Write-Verbose "Changing $($row.server) SQL Server max from $($row.SqlMaxMB) to $($row.RecommendedMB) MB"
 					
-					if ($row.RecommendedMB -eq 0 -or $row.RecommendedMB -eq $null)
+					if ($row.RecommendedMB -eq 0 -or $null -eq $row.RecommendedMB)
 					{
 						$maxmem = (Test-DbaMaxMemory -SqlServer $server).RecommendedMB
 						Write-wearning $maxmem
@@ -150,7 +150,10 @@ of the server (think 2147483647), then pipe those to Set-DbaMaxMemory and use th
 					$server.Configuration.MaxServerMemory.ConfigValue = $MaxMB
 					$row.SqlMaxMB = $MaxMB
 				}
-				$server.Configuration.Alter()
+				If ($Pscmdlet.ShouldProcess($($Server.name), "Altering Max Mem to $MaxMb"))
+					{
+						$server.Configuration.Alter()
+					}
 			}
 			catch
 			{
