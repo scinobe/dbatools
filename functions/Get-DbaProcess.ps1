@@ -87,7 +87,8 @@ Shows information about the processes that were initiated by hosts (computers/cl
 	BEGIN
 	{
 		$sourceserver = Connect-SqlServer -SqlServer $sqlserver -SqlCredential $SqlCredential
-		$source = $sourceserver.DomainInstanceName
+		## Commented out to pass Pester - Is this used elsewhere in a migration?
+		## $source = $sourceserver.DomainInstanceName
 		
 		$logins = $psboundparameters.Logins
 		$spids = $psboundparameters.Spids
