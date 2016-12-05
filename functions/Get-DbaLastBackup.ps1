@@ -57,7 +57,9 @@ Returns a gridview displaying Server, Database, RecoveryModel, LastFullBackup, L
 		[parameter(Mandatory = $true, ValueFromPipeline = $true)]
 		[Alias("ServerInstance", "SqlInstance")]
 		[string[]]$SqlServer,
-		[PsCredential]$Credential,
+		[PsCredential]
+		[System.Management.Automation.Credential()]
+		$Credential,
 		[switch]$Simple
 	)
 
