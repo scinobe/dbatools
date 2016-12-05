@@ -129,7 +129,7 @@ Gets SQL Server versions, editions and product keys for all instances listed wit
 			$dbstore = $cmstore.DatabaseEngineServerGroup
 			$SqlServers = $dbstore.GetDescendantRegisteredServers().servername
 			# Add the CM server itself, which can't be stored in the CM server.
-			$servers += $SqlCms
+			$Sqlservers += $SqlCms
 			$basenames = @()
 			foreach ($server in $SqlServers) { $basenames += $server.Split("\")[0] }
 			$SqlServers = $basenames | Get-Unique
