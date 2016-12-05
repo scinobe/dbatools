@@ -6,7 +6,7 @@ Entire test commented out because someone needs to look at:
 # --------                             --------     --------                  ----  -------                                                     
 # PSUseDeclaredVarsMoreThanAssignments Warning      Start-SqlMigration.ps1    441   The variable 'netshare' is assigned but never used.         
 
-Logged as issue #385
+Logged as issue #385.
 
 ## This is a template file for the ScriptAnalyser tests for each command.
 ## It Should be named $CommandName.Tests.ps1 the capital T is important as is the . !!
