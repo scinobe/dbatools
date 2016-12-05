@@ -459,7 +459,8 @@ WHERE EXISTS (SELECT 1
 
         $sqlGO = "GO`r`n"
         $sqlFinalGO = "GO`r`n`r`n"
-        $sqlUSE = ""
+		## Commented out to pass Pester - Is this used elsewhere in a migration?
+        ## $sqlUSE = ""
 
         if ($FilePath.Length -gt 0)
 		{
@@ -488,7 +489,8 @@ WHERE EXISTS (SELECT 1
 		
 		if ($pipedatabase.Length -gt 0)
 		{
-			$Source = $pipedatabase[0].parent.name
+			## Commented out to pass Pester - Is this used elsewhere in a migration?
+			## $Source = $pipedatabase[0].parent.name
 			$databases = $pipedatabase.name
 		}
 
