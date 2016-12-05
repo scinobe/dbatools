@@ -207,7 +207,7 @@ Similar to running sp_WhoIsActive @get_outer_command = 1, @find_block_leaders = 
 	
 #>
 	
-	[CmdletBinding(SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	Param (
 		[parameter(Mandatory = $true, ValueFromPipeline = $true)]
 		[Alias('ServerInstance', 'SqlInstance')]
@@ -321,7 +321,8 @@ Similar to running sp_WhoIsActive @get_outer_command = 1, @find_block_leaders = 
 		}
 		
 		$sourceserver = Connect-SqlServer -SqlServer $sqlserver -SqlCredential $SqlCredential
-		$source = $sourceserver.DomainInstanceName
+		## Commented out to pass Pester as not used - Is this used elsewhere in a migration?
+		## $source = $sourceserver.DomainInstanceName
 		
 		if ($sourceserver.VersionMajor -lt 9)
 		{
