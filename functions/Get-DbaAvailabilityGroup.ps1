@@ -69,7 +69,7 @@ Shows basic information on the Availability Group AG-a on sqlserver2014a
 Get-DbaAvailabilityGroup -SqlServer sqlserver2014a -AvailabilityGroup AG-a -IsPrimary
 Returns true/false if the server, sqlserver2014a, is the primary replica for AG-a Availability Group
 #>
-	[CmdletBinding(SupportsShouldProcess = $true)]
+	[OutputType([string])] 
 	Param (
 		[parameter(Mandatory = $true, ValueFromPipeline = $true)]
 		[Alias("ServerInstance", "SqlInstance")]
