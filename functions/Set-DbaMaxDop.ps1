@@ -104,7 +104,8 @@ Set recommended Max DOP setting for all databases on server sql2016.
             throw "-Databases and -AllDatabases are mutually exclusive. Please choose only one. Quitting"
         }
 		
-		$processed = New-Object System.Collections.ArrayList
+		## Commented out to pass Pester as not used - Is this used elsewhere in a migration?
+		## $processed = New-Object System.Collections.ArrayList
         $results = @()
 	}
 	PROCESS
@@ -116,11 +117,11 @@ Set recommended Max DOP setting for all databases on server sql2016.
 			$UseRecommended = $true
 		}
 		
-		if ($collection -eq $null)
+		if ($null -eq $collection)
 		{
 			$collection = Test-DbaMaxDop -SqlServer $SqlServer -Verbose:$false
 		}
-		elseif ($collection.Instance -eq $null)
+		elseif ($null -eq $collection.Instance)
 		{
 			$collection = Test-DbaMaxDop -SqlServer $SqlServer -Verbose:$false
 		}
@@ -132,7 +133,7 @@ Set recommended Max DOP setting for all databases on server sql2016.
 		
 		foreach ($server in $servers)
 		{
-			if ($server.Instance -ne $null)
+			if ($null -ne $server.Instance )
 			{
 				$servername = $server.Instance
 			}
