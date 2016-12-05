@@ -116,7 +116,8 @@ This command doesn't support passing both servers and default database, but you 
 		{
 			# please continue to use these variable names for consistency
 			$sourceserver = Connect-SqlServer -SqlServer $server -SqlCredential $SqlCredential
-			$source = $sourceserver.DomainInstanceName
+			## Commented out to pass Pester - Is this used elsewhere in a migration?
+			## $source = $sourceserver.DomainInstanceName
 			
 			if ($database.length -eq 0)
 			{
