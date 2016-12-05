@@ -153,7 +153,7 @@ https://dbatools.io/Repair-SqlOrphanUser
 
                     if ($Users.Count -eq 0)
                     {
-                        $Users = $db.Users | Where {$_.Login -eq "" -and ("dbo","guest","sys","INFORMATION_SCHEMA" -notcontains $_.Name)}
+                        $Users = $db.Users | Where-Object {$_.Login -eq "" -and ("dbo","guest","sys","INFORMATION_SCHEMA" -notcontains $_.Name)}
                     }
                     else
                     {
@@ -164,7 +164,7 @@ https://dbatools.io/Repair-SqlOrphanUser
 		                }
                         else
                         {
-                            $Users = $db.Users | Where {$_.Login -eq "" -and ($Users -contains $_.Name)}
+                            $Users = $db.Users | Where-Object {$_.Login -eq "" -and ($Users -contains $_.Name)}
                         }
                     }
                     
