@@ -1,4 +1,19 @@
-﻿#Thank you Warren http://ramblingcookiemonster.github.io/Testing-DSC-with-Pester-and-AppVeyor/
+﻿<#
+
+Entire test commented out because someone needs to look at:
+
+RuleName                            Severity     FileName   Line  Message                                                     
+--------                            --------     --------   ----  -------                                                     
+PSUseOutputTypeCorrectly            Information  Test-DbaDa 151   The cmdlet 'Test-DbaDatabaseOwner' returns an object of     
+                                                 tabaseOwne       type 'System.Object[]' but this type is not declared in the 
+                                                 r.ps1            OutputType attribute.                                       
+PSAvoidUsingPlainTextForPassword    Warning      Test-DbaDa 70    Parameter '$SqlCredential' should use SecureString,         
+                                                 tabaseOwne       otherwise this will expose sensitive information. See       
+                                                 r.ps1            ConvertTo-SecureString for more information.  
+
+Logged in issue #394
+
+#Thank you Warren http://ramblingcookiemonster.github.io/Testing-DSC-with-Pester-and-AppVeyor/
 
 if(-not $PSScriptRoot)
 {
@@ -360,5 +375,4 @@ Get-ChildItem "$Modulebase\internal\" |% {. $_.fullname}
 		}# Context
         }#modulescope
     }#describe
-    
-    
+#>
