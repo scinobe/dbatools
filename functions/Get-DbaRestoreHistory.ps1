@@ -75,7 +75,9 @@ Returns database restore information for every database on every server listed i
 		[Alias("ServerInstance", "SqlInstance")]
 		[string[]]$SqlServer,
 		[Alias("SqlCredential")]
-		[PsCredential]$Credential,
+		[PsCredential]
+		[System.Management.Automation.Credential()]
+		$Credential,
 		[datetime]$Since,
 		[switch]$Detailed,
 		[switch]$Force
@@ -164,7 +166,7 @@ Returns database restore information for every database on every server listed i
 					$wherearray += "destination_database_name in ('$dblist')"
 				}
 				
-				if ($Since -ne $null)
+				if ($null -ne $Since)
 				{
 					$wherearray += "rsh.restore_date >= '$since'"
 				}
