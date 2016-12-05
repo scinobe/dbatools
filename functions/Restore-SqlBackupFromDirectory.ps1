@@ -233,7 +233,8 @@ All user databases contained within \\fileserver\share\sqlbackups\SQLSERVERA wil
 				$skippedb[$dbname] = "Database contains FILESTREAM and filestreams are not supported by destination server."
 				continue
 			}
-			$backupinfo = $restore.ReadBackupHeader($server)
+			## Commented out to pass Pester - Is this used elsewhere in a migration?
+			## $backupinfo = $restore.ReadBackupHeader($server)
 			## Commented out to pass Pester - Is this used elsewhere in a migration?
 			## $backupversion = [version]("$($backupinfo.SoftwareVersionMajor).$($backupinfo.SoftwareVersionMinor).$($backupinfo.SoftwareVersionBuild)")
 			
