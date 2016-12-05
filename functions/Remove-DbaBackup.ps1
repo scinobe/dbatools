@@ -170,7 +170,7 @@ It will also remove any backup folders that no longer contain backup files.
             param (
                 [string]$BaseLocation
             )
-            Get-ChildItem -Path $BaseLocation -Recurse | Where-Object {$_.PSIsContainer -eq $true -and (Get-ChildItem -Path $_.FullName) -eq $null}
+            Get-ChildItem -Path $BaseLocation -Recurse | Where-Object {$_.PSIsContainer -eq $true -and ($null -eq (Get-ChildItem -Path $_.FullName))}
         }
 
 
