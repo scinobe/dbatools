@@ -384,7 +384,7 @@ end
 			
 			if ($NoDatabases -eq $false)
 			{
-				if ($databases.length -eq 0) { $databases = $sourcelogin.EnumDatabaseMappings() }
+				$databases = $sourcelogin.EnumDatabaseMappings() 
 				# Adding database mappings and securables
 				foreach ($db in $databases)
 				{
