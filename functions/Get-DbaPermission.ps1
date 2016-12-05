@@ -76,7 +76,9 @@ Returns a custom object with permissions for the master database
 		[parameter(Mandatory = $true, ValueFromPipeline = $true)]
 		[Alias("ServerInstance", "SqlInstance")]
 		[string[]]$SqlServer,
-		[PsCredential]$Credential,
+		[PsCredential]
+		[System.Management.Automation.Credential()]
+		$Credential,
 		[switch]$Detailed,
 		[switch]$IncludeServerLevel,
 		[switch]$NoSystemObjects
