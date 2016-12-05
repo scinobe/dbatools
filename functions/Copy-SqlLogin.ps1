@@ -237,14 +237,20 @@ Limitations: Does not support Application Roles yet
 					Write-Output "Setting $username SID to source username SID"
 					$destlogin.set_Sid($sourcelogin.get_Sid())
 					
-					$defaultdb = $sourcelogin.DefaultDatabase
 					Write-Output "Setting login language to $($sourcelogin.Language)"
 					$destlogin.Language = $sourcelogin.Language
 					
+					if ($defaultdb -eq $null) {
+						$defaultdb = $sourcelogin.DefaultDatabase
+					}										
 					if ($destserver.databases[$defaultdb] -eq $null)
 					{
-						Write-Warning "$defaultdb does not exist on destination. Setting defaultdb to master."
-						$defaultdb = "master"
+						$defaultdb = $DefaultDbIfMissing
+						if (if $defaultdb -eq $null -or $destserver.databases[$defaultdb] -eq $null)
+						{
+							Write-Warning "$defaultdb does not exist on destination. Setting defaultdb to master."
+							$defaultdb = "master"
+						}						
 					}
 					Write-Output "Set $username defaultdb to $defaultdb"
 					$destlogin.DefaultDatabase = $defaultdb
