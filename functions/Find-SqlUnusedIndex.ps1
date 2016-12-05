@@ -208,7 +208,8 @@ Will find exact Unused indexes on all user databases
 		
 		if ($pipedatabase.Length -gt 0)
 		{
-			$Source = $pipedatabase[0].parent.name
+			## Commented out to pass Pester - Is this used elsewhere in a migration?
+            ## $Source = $pipedatabase[0].parent.name
 			$databases = $pipedatabase.name
 		}
 
@@ -275,7 +276,10 @@ Will find exact Unused indexes on all user databases
 
                                 if ($FilePath.Length -gt 0)
 		                        {
-			                        $sqlDropScript | Out-File -FilePath $FilePath -Append:$Append -NoClobber:$NoClobber
+			                        If ($Pscmdlet.ShouldProcess($FilePath, "Outputting Script"))
+					                    {
+                                            $sqlDropScript | Out-File -FilePath $FilePath -Append:$Append -NoClobber:$NoClobber
+                                        }
 		                        }
                                 else
                                 {
