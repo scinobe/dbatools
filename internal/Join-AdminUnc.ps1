@@ -19,6 +19,7 @@ Internal function. Parses a path to make it an admin UNC.
 	if ($filepath.StartsWith("\\")) { return $filepath }
 	
 	$servername = $servername.Split("\")[0]
+	$servername = (Resolve-DbaNetworkName $servername).ComputerName
 	
 	if ($filepath.length -gt 0 -and $filepath -ne [System.DbNull]::Value)
 	{

@@ -78,6 +78,7 @@ Tests whether the service account running the "sqlcluster" SQL Server isntance c
 	}
 	else
 	{
+		$unc = Join-AdminUnc 
 		return $false
 	}
 }
