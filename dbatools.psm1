@@ -4,6 +4,9 @@ foreach ($function in (Get-ChildItem "$PSScriptRoot\internal\*.ps1")) { . $funct
 # All exported functions
 foreach ($function in (Get-ChildItem "$PSScriptRoot\functions\*.ps1")) { . $function }
 
+# All internal functions privately avaialble within the toolset
+foreach ($function in (Get-ChildItem "$PSScriptRoot\internal\dynamicparameters\*.ps1")) { . $function }
+
 # Not supporting the provider path at this time
 # if (((Resolve-Path .\).Path).StartsWith("SQLSERVER:\")) { throw "Please change to another drive and reload the module." }
 
