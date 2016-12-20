@@ -1,4 +1,4 @@
-Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
+Register-ArgumentCompleter -ParameterName AuditSpecifications -ScriptBlock {
 	param (
 		$commandName,
 		$parameterName,
