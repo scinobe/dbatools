@@ -8,6 +8,7 @@
 	)
 	
 	$server = Get-SmoServerForDynamicParams
+	$collection = $server.AvailabilityGroups.Name
 	
 	if ($collection)
 	{

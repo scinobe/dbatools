@@ -1,6 +1,6 @@
 ﻿$processinfo = "Logins", "Spids", "Exclude", "Hosts", "Programs", "Databases"
 
-foreach ($name in processinfo)
+foreach ($name in $processinfo)
 {
 	Register-ArgumentCompleter -ParameterName $name -ScriptBlock {
 		param (

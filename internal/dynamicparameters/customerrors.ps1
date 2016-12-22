@@ -8,6 +8,7 @@ Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
 	)
 	
 	$server = Get-SmoServerForDynamicParams
+	$collection = ($server.UserDefinedMessages | Select-Object ID | Sort-Object | Get-Unique).Name
 	
 	if ($collection)
 	{

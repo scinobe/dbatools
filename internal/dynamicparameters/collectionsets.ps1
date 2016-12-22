@@ -1,4 +1,4 @@
-﻿Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
+﻿Register-ArgumentCompleter -ParameterName CollectionSets -ScriptBlock {
 	param (
 		$commandName,
 		$parameterName,
@@ -8,6 +8,11 @@
 	)
 	
 	$server = Get-SmoServerForDynamicParams
+	$sqlconn = $server.ConnectionContext.SqlConnectionObject
+	$storeconn = New-Object Microsoft.SqlServer.Management.Sdk.Sfc.SqlStoreConnection $sqlconn
+	$store = New-Object Microsoft.SqlServer.Management.Collector.CollectorConfigStore $storeconn
+	
+	$collection = ($store.CollectionSets | Where-Object { $_.isSystem -eq $false }).Name
 	
 	if ($collection)
 	{

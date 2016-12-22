@@ -8,6 +8,11 @@ Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
 	)
 	
 	$server = Get-SmoServerForDynamicParams
+	$sqlconn = $server.ConnectionContext.SqlConnectionObject
+	$sqlStoreConnection = New-Object Microsoft.SqlServer.Management.Sdk.Sfc.SqlStoreConnection $sqlconn
+	
+	$store = New-Object  Microsoft.SqlServer.Management.XEvent.XEStore $sqlStoreConnection
+	$collection = $store.Sessions.Name
 	
 	if ($collection)
 	{

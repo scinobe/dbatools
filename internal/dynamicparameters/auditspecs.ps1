@@ -8,6 +8,7 @@ Register-ArgumentCompleter -ParameterName AuditSpecifications -ScriptBlock {
 	)
 	
 	$server = Get-SmoServerForDynamicParams
+	$collection = $server.ServerAuditSpecifications.Name
 	
 	if ($collection)
 	{
