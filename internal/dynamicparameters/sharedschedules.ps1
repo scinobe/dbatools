@@ -1,4 +1,4 @@
-Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
+Register-ArgumentCompleter -ParameterName SharedSchedules -ScriptBlock {
 	param (
 		$commandName,
 		$parameterName,
@@ -8,6 +8,7 @@ Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
 	)
 	
 	$server = Get-SmoServerForDynamicParams
+	$collection = $server.JobServer.SharedSchedules.Name
 	
 	if ($collection)
 	{

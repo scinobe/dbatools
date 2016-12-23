@@ -1,4 +1,4 @@
-﻿Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
+﻿Register-ArgumentCompleter -ParameterName ProxyAccounts -ScriptBlock {
 	param (
 		$commandName,
 		$parameterName,
@@ -8,6 +8,7 @@
 	)
 	
 	$server = Get-SmoServerForDynamicParams
+	$collection = $server.JobServer.ProxyAccounts.Name
 	
 	if ($collection)
 	{

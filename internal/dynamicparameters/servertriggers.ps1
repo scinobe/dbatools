@@ -1,4 +1,4 @@
-﻿Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
+﻿Register-ArgumentCompleter -ParameterName Triggers -ScriptBlock {
 	param (
 		$commandName,
 		$parameterName,
@@ -8,6 +8,7 @@
 	)
 	
 	$server = Get-SmoServerForDynamicParams
+	$collection = $server.Triggers.Name
 	
 	if ($collection)
 	{

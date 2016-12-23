@@ -8,6 +8,7 @@
 	)
 	
 	$server = Get-SmoServerForDynamicParams
+	$collection = $server.JobServer.TargetServers.Name
 	
 	if ($collection)
 	{

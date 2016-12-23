@@ -8,6 +8,7 @@ Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
 	)
 	
 	$server = Get-SmoServerForDynamicParams
+	$collection = $server.roles | Where-Object { $_.IsFixedRole -eq $false -and $_.Name -ne 'public' } | Select -Exp Name
 	
 	if ($collection)
 	{

@@ -1,4 +1,4 @@
-﻿Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
+﻿Register-ArgumentCompleter -ParameterName Operators -ScriptBlock {
 	param (
 		$commandName,
 		$parameterName,
@@ -8,6 +8,7 @@
 	)
 	
 	$server = Get-SmoServerForDynamicParams
+	$collection = $server.JobServer.Operators.Name
 	
 	if ($collection)
 	{

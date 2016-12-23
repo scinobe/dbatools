@@ -1,4 +1,4 @@
-Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
+Register-ArgumentCompleter -ParameterName LinkedServers -ScriptBlock {
 	param (
 		$commandName,
 		$parameterName,
@@ -8,6 +8,7 @@ Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
 	)
 	
 	$server = Get-SmoServerForDynamicParams
+	$collection = $server.LinkedServers | Where-Object { $_.Name -ne "repl_distributor"} | Select -exp Name
 	
 	if ($collection)
 	{

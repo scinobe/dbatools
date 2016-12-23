@@ -1,4 +1,4 @@
-Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
+Register-ArgumentCompleter -ParameterName Sessions -ScriptBlock {
 	param (
 		$commandName,
 		$parameterName,

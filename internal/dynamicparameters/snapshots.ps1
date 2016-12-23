@@ -1,4 +1,4 @@
-Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
+Register-ArgumentCompleter -ParameterName Shapshots -ScriptBlock {
 	param (
 		$commandName,
 		$parameterName,
@@ -8,6 +8,9 @@ Register-ArgumentCompleter -ParameterName Name -ScriptBlock {
 	)
 	
 	$server = Get-SmoServerForDynamicParams
+	$collection = $server.Databases | Where-Object { $_.IsDatabaseSnapshot -eq $true | Select -Exp Name
+	#$databaselist += $database.DatabaseSnapshotBaseName
+		
 	
 	if ($collection)
 	{
