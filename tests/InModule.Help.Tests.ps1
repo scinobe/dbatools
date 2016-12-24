@@ -52,7 +52,7 @@ foreach ($command in $commands)
 	# The module-qualified command fails on Microsoft.PowerShell.Archive cmdlets
 	$Help = Get-Help $commandName -ErrorAction SilentlyContinue
 	
-	Describe "Test help for $commandName" {
+	Describe "Test help for $commandName" -Tag @('Help','Examples','Parameters') {
 		
 		# If help is not found, synopsis in auto-generated help is the syntax diagram
 		It "should not be auto-generated" {
@@ -76,7 +76,7 @@ foreach ($command in $commands)
 		
 		Context "Test parameter help for $commandName" {
 			
-			$Common = 'Debug', 'ErrorAction', 'ErrorVariable', 'InformationAction', 'InformationVariable', 'OutBuffer', 'OutVariable',
+			$Common = 'Confirm','WhatIf','Debug', 'ErrorAction', 'ErrorVariable', 'InformationAction', 'InformationVariable', 'OutBuffer', 'OutVariable',
 			'PipelineVariable', 'Verbose', 'WarningAction', 'WarningVariable'
 			
 			$parameters = $command.ParameterSets.Parameters | Sort-Object -Property Name -Unique | Where-Object { $_.Name -notin $common }
