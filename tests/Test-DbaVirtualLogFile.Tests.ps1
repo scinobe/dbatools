@@ -72,7 +72,7 @@ $null = Import-Module $ModuleBase\$ModuleName.psd1 -PassThru -ErrorAction Stop
 . "$Modulebase\functions\DynamicParams.ps1"
 Get-ChildItem "$Modulebase\internal\" |ForEach-Object {. $_.fullname}
 
-    Describe "$Name Tests" -Tag ('Command'){
+    Describe "$Name Tests" -Tag @('Command'){
         InModuleScope 'dbatools' {
         Context "Connects to SQL Server" {
                               It "Should not throw" {
