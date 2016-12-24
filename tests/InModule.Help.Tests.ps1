@@ -6,6 +6,7 @@
 		Created by:   	June Blender
 		Organization: 	SAPIEN Technologies, Inc
 		Filename:		*.Help.Tests.ps1
+        ALTERED - Rob Sewell 24/12/2016 Common Parameter name test exclusion 
 		===========================================================================
 	.DESCRIPTION
 	To test help for the commands in a module, place this file in the module folder.
@@ -115,6 +116,14 @@ foreach ($command in $commands)
 					$helpParm -in $parameterNames | Should Be $true
 				}
 			}
+
+            $CommonParams = 'PARAMETER Confirm','PARAMETER WhatIf'
+            foreach($C in $CommonParams)
+            {
+               It "Should Not have help for common parameter $C" {
+               $command.Definition.Contains($C) |Should Be $false
+               }
+            }
 		}
 	}
 }
