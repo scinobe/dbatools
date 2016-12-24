@@ -96,7 +96,7 @@ Get-Module $ModuleName | Remove-Module
 # of the module
 $null = Import-Module $ModuleBase\$ModuleName.psd1 -PassThru -ErrorAction Stop 
 . "$Modulebase\functions\DynamicParams.ps1"
-Get-ChildItem "$Modulebase\internal\" |% {. $_.fullname}
+Get-ChildItem "$Modulebase\internal\" |ForEach-Object {. $_.fullname}
 
     Describe "$Name Tests" -Tag ('Command'){
         InModuleScope 'dbatools' {
