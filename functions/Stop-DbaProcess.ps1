@@ -35,11 +35,11 @@ This parameter is auto-populated from -SqlServer. You can specify one or more Sp
 
 Exclude is the last filter to run, so even if a Spid matches, for example, Hosts, if it's listed in Exclude it wil be excluded.
 
-.PARAMETER WhatIf 
-Shows what would happen if the command were to run. No actions are actually performed. 
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
+
+
 	
 .NOTES 
 dbatools PowerShell module (https://dbatools.io, clemaire@gmail.com)

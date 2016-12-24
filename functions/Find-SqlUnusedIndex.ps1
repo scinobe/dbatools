@@ -44,11 +44,11 @@ Do not overwrite file
 .PARAMETER Append
 Append to file
 
-.PARAMETER WhatIf 
-Shows what would happen if the command were to run. No actions are actually performed. 
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
+
+
 
 .NOTES 
 Original Author: Aaron Nelson (@SQLvariant), SQLvariant.com

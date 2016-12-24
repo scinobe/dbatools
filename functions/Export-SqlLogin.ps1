@@ -40,11 +40,11 @@ Doesnot export the Jobs
 .PARAMETER NoDatabases
 oes not export the databases
 
-.PARAMETER WhatIf 
-Shows what would happen if the command were to run. No actions are actually performed. 
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
+
+
 
 .PARAMETER Force
 Drops and recreates the login if it exists

@@ -20,11 +20,11 @@ The SQL Server that you're connecting to.
 .PARAMETER Path
 The Path to the SQL File
 
-.PARAMETER WhatIf 
-Shows what would happen if the command were to run. No actions are actually performed. 
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
+
+
 
 .EXAMPLE
 Export-SqlSpConfigure $sourceserver -Path C:\temp\sp_configure.sql
@@ -137,11 +137,11 @@ The Path to the SQL File
 .PARAMETER Force
 Overrides Major Version Check
 
-.PARAMETER WhatIf 
-Shows what would happen if the command were to run. No actions are actually performed. 
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
+
+
 
 .EXAMPLE
 Import-SqlSpConfigure sqlserver sqlcluster $SourceSqlCredential $DestinationSqlCredential

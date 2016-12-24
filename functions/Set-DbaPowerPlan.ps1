@@ -22,11 +22,11 @@ The Power Plan that you wish to use. These are validated to Windows default Powe
 .PARAMETER CustomPowerPlan
 If you use a custom power plan instead of Windows default, use CustomPowerPlan
 
-.PARAMETER WhatIf 
-Shows what would happen if the command were to run. No actions are actually performed. 
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
+
+
 
 .NOTES 
 Requires: WMI access to servers

@@ -33,11 +33,11 @@ $cred = Get-Credential, this pass this $cred to the param.
 
 Windows Authentication will be used if DestinationSqlCredential is not specified. To connect as a different Windows user, run PowerShell as that user.	
 
-.PARAMETER WhatIf 
-Shows what would happen if the command were to run. No actions are actually performed. 
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
+
+
 
 .PARAMETER NoRecovery
 Leaves the databases in No Recovery state to enable further backups to be added

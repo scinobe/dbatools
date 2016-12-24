@@ -29,11 +29,11 @@ $dcred = Get-Credential, this pass this $dcred to the param.
 
 Windows Authentication will be used if DestinationSqlCredential is not specified. To connect as a different Windows user, run PowerShell as that user.	
 
-.PARAMETER WhatIf 
-Shows what would happen if the command were to run. No actions are actually performed. 
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
+
+
 
 .EXAMPLE
 Copy-SqlSysDbUserObjects $sourceserver $destserver

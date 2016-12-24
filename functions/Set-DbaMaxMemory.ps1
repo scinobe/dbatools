@@ -33,11 +33,11 @@ Windows Authentication will be used if SqlCredential is not specified. SQL Serve
 .PARAMETER Collection
 Results of Get-DbaMaxMemory to be passed into the command
 
-.PARAMETER WhatIf 
-Shows what would happen if the command were to run. No actions are actually performed. 
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
+
+
 
 .NOTES 
 Author  : Chrissy LeMaire (@cl), netnerds.net

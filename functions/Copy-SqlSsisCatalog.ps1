@@ -33,11 +33,11 @@ If the destination does not have SQL CLR configuration option enabled (which is 
 .PARAMETER CreateCatalogPassword
 If a destination SSISDB catalog needs to be created, specify this secure string parameter to skip password prompts.
 
-.PARAMETER WhatIf 
-Shows what would happen if the command were to run. No actions are actually performed. 
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
+
+
 
 .PARAMETER SourceSqlCredential
 Allows you to login to servers using SQL Logins as opposed to Windows Auth/Integrated/Trusted. To use:

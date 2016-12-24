@@ -36,11 +36,11 @@ To connect as a different Windows user, run PowerShell as that user.
 .PARAMETER Force
 If collection sets exists on destination server, it will be dropped and recreated.
 
-.PARAMETER WhatIf 
-Shows what would happen if the command were to run. No actions are actually performed. 
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
+
+
 
 .PARAMETER NoServerReconfig
 Upcoming parameter to enable server reconfiguration

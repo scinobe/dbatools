@@ -57,11 +57,11 @@ Runs the script for every user databases on a server - Useful when decomissionin
 .PARAMETER Force
 This switch will continue to perform rest of the actions and will create an Agent Job with DBCCERROR in the name and a Backup file with DBCC in the name
 
-.PARAMETER WhatIf 
-Shows what would happen if the command were to run. No actions are actually performed. 
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
+
+
 
 .NOTES 
 Original Author: Rob Sewell @SQLDBAWithBeard, sqldbawithabeard.com

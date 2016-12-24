@@ -163,8 +163,8 @@ Leaves the databases in No Recovery state to enable further backups to be added
 .PARAMETER IncludeSupportDbs
 Appears to not be used
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
 
 .NOTES 
 Author: Chrissy LeMaire

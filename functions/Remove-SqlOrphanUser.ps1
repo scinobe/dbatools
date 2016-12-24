@@ -24,11 +24,11 @@ List of users to remove
 .PARAMETER Force
 If exists a login to map the drop will not be performed unless you specify this parameter.
 
-.PARAMETER WhatIf 
-Shows what would happen if the command were to run. No actions are actually performed. 
 
-.PARAMETER Confirm 
-Prompts you for confirmation before executing any changing operations within the command. 
+
+
+
+
 
 .NOTES 
 Original Author: Cláudio Silva (@ClaudioESSilva)
