@@ -6,7 +6,7 @@ $ManifestPath   = "$ModulePath\$ModuleName.psd1"
 
 # test the module manifest - exports the right functions, processes the right formats, and is generally correct
 
-Describe "Manifest" {
+Describe "Manifest" -Tag @('Manifest'){
 
     $Manifest = $null
 <#
