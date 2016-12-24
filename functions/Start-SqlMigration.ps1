@@ -154,9 +154,6 @@ If using -DetachAttach, -Force will break mirrors and drop dbs from Availability
 
 For other migration objects, it will just drop existing items and readd, if -force is supported within the udnerlying function.
 
-.PARAMETER WhatIf
-Shows what would happen if the command were to run. No actions are actually performed.
-
 .PARAMETER NoRecovery
 Leaves the databases in No Recovery state to enable further backups to be added
 
