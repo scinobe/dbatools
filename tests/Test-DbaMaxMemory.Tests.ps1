@@ -1,4 +1,6 @@
-﻿Entire test commented out, someone needs to take a look at:
+﻿<#
+
+Entire test commented out, someone needs to take a look at:
 
 RuleName                            Severity     FileName   Line  Message                                                     
 --------                            --------     --------   ----  -------                                                     
@@ -370,3 +372,4 @@ Get-ChildItem "$Modulebase\internal\" |ForEach-Object {. $_.fullname}
 		}# Context
         }#modulescope
     }#describe
+#>
