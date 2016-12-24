@@ -49,7 +49,7 @@ Import-Module PSScriptAnalyzer
 $Rules = (Get-ScriptAnalyzerRule).Where{$_.RuleName -notin ('PSAvoidUsingPlainTextForPassword') }
 $Name = $sut.Split('.')[0]
 
-    Describe 'Script Analyzer Tests' {
+    Describe 'Script Analyzer Tests'  -Tag @('ScriptAnalyzer'){
             Context "Testing $Name for Standard Processing" {
                 foreach ($rule in $rules) { 
                     $i = $rules.IndexOf($rule)
