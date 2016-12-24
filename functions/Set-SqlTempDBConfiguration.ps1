@@ -55,12 +55,6 @@ Switch to generate script for tempdb configuration.
 .PARAMETER OutFile
 Path to file to save the generated script for tempdb configuration
 
-.PARAMETER WhatIf
-Switch to generate configuration object.
-
-
-
-
 .LINK
 https://dbatools.io/Set-SqltempdbConfiguration
 
