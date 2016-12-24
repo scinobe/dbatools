@@ -30,7 +30,7 @@ $Name = $sut.Split('.')[0]
             }
         }
    ## needs some proper tests for the function here
-    Describe "$Name Tests"{
+    Describe "$Name Tests" -Tag ('Command'){
         Context "Some Tests" {
               It "Should have some Pester Tests added" {
                   $true | Should Be $true

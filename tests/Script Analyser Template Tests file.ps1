@@ -74,7 +74,7 @@ $null = Import-Module $ModuleBase\$ModuleName.psd1 -PassThru -ErrorAction Stop
 . "$Modulebase\functions\DynamicParams.ps1"
 Get-ChildItem "$Modulebase\internal\" |% {. $_.fullname}
 
-    Describe "$Name Tests"{
+    Describe "$Name Tests" -Tag ('Command'){
         InModuleScope 'dbatools' {
             Context " There should be some functional tests here" {
                 It "Does a thing" {
