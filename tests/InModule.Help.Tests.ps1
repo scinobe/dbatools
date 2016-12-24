@@ -81,7 +81,7 @@ foreach ($command in $commands)
 			
 			$parameters = $command.ParameterSets.Parameters | Sort-Object -Property Name -Unique | Where-Object { $_.Name -notin $common }
 			$parameterNames = $parameters.Name
-			$HelpParameterNames = $Help.Parameters.Parameter.Name | Sort-Object -Unique
+			$HelpParameterNames = $Help.Parameters.Parameter.Name | Where-Object { $_ -notin $common } |Sort-Object -Unique
 			
 			foreach ($parameter in $parameters)
 			{
