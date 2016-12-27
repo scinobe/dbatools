@@ -62,7 +62,7 @@ $Script:Manifest = Test-ModuleManifest -Path $ManifestPath -ErrorAction Silently
 	}
 
 	It "has valid (invalid!!) required assemblies" {
-		$Script:Manifest.RequiredAssemblies | Should Be ''
+		{$Script:Manifest.RequiredAssemblies -eq @()} | Should Be $true
 	}
 
 	It "has a valid copyright" {
